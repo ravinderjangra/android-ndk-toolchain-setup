@@ -1359,11 +1359,13 @@ function get() {
     const arch = getInput('arch', { required: true });
     const installLocation = getInput('install-location');
     const force = getInputBool('force');
+    const addToPath = getInputBool('add-to-path');
     return {
         api,
         arch,
         installLocation,
-        force: force || false
+        force: force || false,
+        addToPath: addToPath || true
     };
 }
 exports.get = get;

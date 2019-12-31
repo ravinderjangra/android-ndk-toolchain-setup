@@ -5,6 +5,7 @@ export interface NdkToolChainSetupInput {
   arch: string
   installLocation: string
   force: boolean
+  addToPath: boolean
 }
 
 export function get(): NdkToolChainSetupInput {
@@ -12,12 +13,14 @@ export function get(): NdkToolChainSetupInput {
   const arch = getInput('arch', {required: true})
   const installLocation = getInput('install-location')
   const force = getInputBool('force')
+  const addToPath = getInputBool('add-to-path')
 
   return {
     api,
     arch,
     installLocation,
-    force: force || false
+    force: force || false,
+    addToPath: addToPath || true
   }
 }
 

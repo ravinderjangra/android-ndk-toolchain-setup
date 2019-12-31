@@ -16,6 +16,10 @@ inputs:
     description: 'Force install toolchain'
     default: 'false'
     required: false
+  add-to-path:
+    description: 'Add toolchain to the path'
+    default: 'true'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
