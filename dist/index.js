@@ -1030,9 +1030,12 @@ function SetupNdkToolchain(actionInput) {
     return __awaiter(this, void 0, void 0, function* () {
         const program = yield ndk_1.Ndk.get();
         const args = [];
-        args.push(' --arch ${actionInput.arch}');
-        args.push(' --api ${actionInput.api}');
-        args.push(' --install-dir ${actionInput.installLocation}');
+        args.push(' --arch');
+        args.push(actionInput.arch);
+        args.push(' --api');
+        args.push(actionInput.api);
+        args.push(' --install-dir');
+        args.push(actionInput.installLocation);
         if (actionInput.force)
             args.push(' --force');
         yield program.call(args);
