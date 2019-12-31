@@ -1,16 +1,25 @@
-import * as core from '@actions/core'
-import {wait} from './wait'
+const path = require('path');
+
+import * as core from '@actions/core';
+import * as input from './input';
+import {Ndk} from './ndk';
+
+export async function SetupNdkToolchain(actionInput: input.NdkToolChainSetupInput): Promise<void> {
+  let program = await Ndk.get();
+  let args: string[] = [];
+  args.push(' --arch ' + actionInput.arch);
+  args.push(' --api ' + actionInput.api);
+  args.push(' --install-dir ' + actionInput.install_location);
+  if (actionInput.force)
+    args.push(' --force');
+
+  await program.call(args);
+}
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`)
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const actionInput = input.get();
+    await SetupNdkToolchain(actionInput);
   } catch (error) {
     core.setFailed(error.message)
   }

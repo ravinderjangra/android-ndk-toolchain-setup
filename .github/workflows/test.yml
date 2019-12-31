@@ -18,6 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: create toolchains dir
+      shell: bash
+      run: mkdir toolchains
     - uses: ./
       with: 
-        milliseconds: 1000
+        api: '21'
+        arch: 'arm'
+        install-location: 'toolchains'
+        force: true

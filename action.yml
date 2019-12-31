@@ -1,10 +1,21 @@
 name: 'Rust Android Build Libs'
-description: 'Build Android native libs from the RUST code'
+description: 'Setup Android NDK for native libs generation from the RUST code'
 author: 'Ravinder Jangra'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  api:
+    description: 'Android API'
+    default: '21'
+    required: true
+  arch:
+    description: 'Platform arch'
+    required: true
+  install-location:
+    description: 'Path to use for NDK toolchain'
+    required: true
+  force:
+    description: 'Force install toolchain'
+    default: 'false'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
