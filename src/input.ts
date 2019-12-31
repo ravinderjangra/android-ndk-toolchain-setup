@@ -1,25 +1,23 @@
 
 import * as core from '@actions/core';
 
-import stringArgv from 'string-argv';
-
 export interface NdkToolChainSetupInput {
     api: string,
     arch: string,
-    install_location: string,
+    installLocation: string,
     force: boolean,
 }
 
 export function get(): NdkToolChainSetupInput {
     const api = getInput('api', { required: true });
     const arch = getInput('arch', { required: true });
-    let install_location = getInput('install-location');
+    const installLocation = getInput('install-location');
     const force = getInputBool('force');
 
     return {
-        api: api,
-        arch: arch,
-        install_location: install_location,
+        api,
+        arch,
+        installLocation,
         force: force || false,
     }
 }

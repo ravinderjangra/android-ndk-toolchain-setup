@@ -1,15 +1,14 @@
-const path = require('path');
 
 import * as core from '@actions/core';
 import * as input from './input';
 import {Ndk} from './ndk';
 
 export async function SetupNdkToolchain(actionInput: input.NdkToolChainSetupInput): Promise<void> {
-  let program = await Ndk.get();
-  let args: string[] = [];
+  const program = await Ndk.get();
+  const args: string[] = [];
   args.push(' --arch ' + actionInput.arch);
   args.push(' --api ' + actionInput.api);
-  args.push(' --install-dir ' + actionInput.install_location);
+  args.push(' --install-dir ' + actionInput.installLocation);
   if (actionInput.force)
     args.push(' --force');
 
