@@ -1,5 +1,5 @@
-name: 'Rust Android Build Libs'
-description: 'Setup Android NDK for native libs generation from the RUST code'
+name: 'Android NDK toolchain Setup'
+description: 'Setup Android NDK for native libs generation'
 author: 'Ravinder Jangra'
 inputs:
   api:
