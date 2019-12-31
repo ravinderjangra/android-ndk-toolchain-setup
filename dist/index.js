@@ -980,7 +980,7 @@ class Ndk {
     static get() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return new Ndk(Ndk.defaultNdkPath);
+                return new Ndk('${Ndk.defaultNdkPath}/${defaultMakeToolchainFilePath}');
             }
             catch (error) {
                 core.error('Android NDK in not installed by default.');
@@ -997,6 +997,7 @@ class Ndk {
 }
 exports.Ndk = Ndk;
 Ndk.defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle';
+Ndk.defaultMakeToolchainFilePath = 'build/tools/make_standalone_toolchain.py';
 
 
 /***/ }),
