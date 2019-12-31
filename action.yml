@@ -1,6 +1,6 @@
 name: 'Android NDK toolchain Setup'
 description: 'Setup Android NDK for native libs generation'
-author: 'Ravinder Jangra'
+author: 'ravinderjangra'
 inputs:
   api:
     description: 'Android API'
