@@ -1,6 +1,6 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Rust Android Build Libs'
+description: 'Build Android native libs from the RUST code'
+author: 'Ravinder Jangra'
 inputs:
   myInput:              # change this
     description: 'input description here'
