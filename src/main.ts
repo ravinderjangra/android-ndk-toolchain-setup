@@ -7,13 +7,13 @@ export async function SetupNdkToolchain(
 ): Promise<void> {
   const program = await Ndk.get()
   const args: string[] = []
-  args.push(' --arch')
+  args.push('--arch')
   args.push(actionInput.arch)
-  args.push(' --api')
+  args.push('--api')
   args.push(actionInput.api)
-  args.push(' --install-dir')
+  args.push('--install-dir')
   args.push(actionInput.installLocation)
-  if (actionInput.force) args.push(' --force')
+  if (actionInput.force) args.push('--force')
 
   await program.call(args)
 }
