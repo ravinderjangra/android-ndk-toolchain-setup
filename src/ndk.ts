@@ -3,9 +3,7 @@ import * as exec from '@actions/exec'
 
 export class Ndk {
   private static readonly defaultNdkPath =
-    '/usr/local/lib/android/sdk/ndk-bundle'
-  private static readonly defaultMakeToolchainFilePath =
-    'build/tools/make_standalone_toolchain.py'
+    '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
   private readonly path: string
 
   private constructor(path: string) {
@@ -15,7 +13,7 @@ export class Ndk {
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
   public static async get(): Promise<Ndk> {
     try {
-      return new Ndk('${Ndk.defaultNdkPath}/${defaultMakeToolchainFilePath}')
+      return new Ndk(Ndk.defaultNdkPath)
     } catch (error) {
       core.error('Android NDK in not installed by default.')
       throw error
