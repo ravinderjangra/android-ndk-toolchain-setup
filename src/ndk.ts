@@ -1,9 +1,17 @@
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
+import * as os from 'os'
 
 export class Ndk {
-  private static readonly defaultNdkPath =
-    '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
+  const osPlatform = os.platform()
+
+  private static defaultNDKPath: string = ""
+
+  if (osPlatform == 'linux')
+    defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
+  else if (osPlatform == 'darwin')
+    defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
+  }
   private readonly path: string
 
   private constructor(path: string) {
