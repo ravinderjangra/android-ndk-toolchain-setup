@@ -7,9 +7,9 @@ export class Ndk {
 
   private static defaultNDKPath: string = ""
 
-  if (osPlatform == 'linux')
+  if (osPlatform == 'linux') {
     defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
-  else if (osPlatform == 'darwin')
+  } else if (osPlatform == 'darwin') {
     defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
   }
   private readonly path: string
