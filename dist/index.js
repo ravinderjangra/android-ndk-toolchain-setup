@@ -974,17 +974,17 @@ const core = __importStar(__webpack_require__(470));
 const exec = __importStar(__webpack_require__(986));
 const os = __importStar(__webpack_require__(87));
 class Ndk {
-    constructor(path) {
+    constructor() {
         this.osPlatform = os.platform();
-        this.path = path;
+        this.path = 'default';
         const isOSX = this.osPlatform === 'darwin';
         const isLinux = this.osPlatform === 'linux';
         if (isLinux) {
-            Ndk.defaultNdkPath =
+            this.path =
                 '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
         }
         else if (isOSX) {
-            Ndk.defaultNdkPath =
+            this.path =
                 '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
         }
     }
@@ -992,7 +992,7 @@ class Ndk {
     static get() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return new Ndk(Ndk.defaultNdkPath);
+                return new Ndk();
             }
             catch (error) {
                 core.error('Android NDK in not installed by default.');
