@@ -975,6 +975,21 @@ const exec = __importStar(__webpack_require__(986));
 class Ndk {
     constructor(path) {
         this.path = path;
+
+        var OSName="Unknown OS";
+        if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+        if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+        if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+        if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+
+        if (OSName === "Linux") {
+           Ndk.defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
+        } else if (OSName === "MacOS") {
+            Ndk.defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
+        } else {
+            Ndk.defaultNdkPath = OSName;
+        }
+
     }
     // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
     static get() {
@@ -996,8 +1011,6 @@ class Ndk {
     }
 }
 exports.Ndk = Ndk;
-Ndk.defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
-
 
 /***/ }),
 
