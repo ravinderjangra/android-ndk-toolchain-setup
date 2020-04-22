@@ -3,19 +3,20 @@ import * as exec from '@actions/exec'
 import * as os from 'os'
 
 export class Ndk {
-  const osPlatform = os.platform()
+  private osPlatform = os.platform()
 
-  private static defaultNDKPath: string = ""
+  private static defaultNdkPath: string = ""
 
-  if (osPlatform == 'linux') {
-    defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
-  } else if (osPlatform == 'darwin') {
-    defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
-  }
   private readonly path: string
 
   private constructor(path: string) {
     this.path = path
+
+    if (this.osPlatform === 'linux') {
+      Ndk.defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
+    } else if (this.osPlatform === 'darwin') {
+      Ndk.defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
