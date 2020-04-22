@@ -4,18 +4,16 @@ import * as os from 'os'
 
 export class Ndk {
   osPlatform = os.platform()
-  private readonly path: string
-  static defaultNdkPath: string
+  private path: string = 'default'
 
-  private constructor(path: string) {
-    this.path = path
+  private constructor() {
     const isOSX: boolean = this.osPlatform === 'darwin'
     const isLinux: boolean = this.osPlatform === 'linux'
     if (isLinux) {
-      Ndk.defaultNdkPath =
+      this.path =
         '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
     } else if (isOSX) {
-      Ndk.defaultNdkPath =
+      this.path =
         '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
     }
   }
@@ -23,7 +21,7 @@ export class Ndk {
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
   public static async get(): Promise<Ndk> {
     try {
-      return new Ndk(Ndk.defaultNdkPath)
+      return new Ndk()
     } catch (error) {
       core.error('Android NDK in not installed by default.')
       throw error
