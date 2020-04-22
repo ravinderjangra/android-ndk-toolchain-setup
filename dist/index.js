@@ -972,9 +972,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const exec = __importStar(__webpack_require__(986));
+const os = __importStar(__webpack_require__(87));
 class Ndk {
     constructor(path) {
+        this.osPlatform = os.platform();
         this.path = path;
+        const isOSX = this.osPlatform === 'darwin';
+        const isLinux = this.osPlatform === 'linux';
+        if (isLinux) {
+            Ndk.defaultNdkPath =
+                '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
+        }
+        else if (isOSX) {
+            Ndk.defaultNdkPath =
+                '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
+        }
     }
     // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
     static get() {
@@ -996,7 +1008,6 @@ class Ndk {
     }
 }
 exports.Ndk = Ndk;
-Ndk.defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py';
 
 
 /***/ }),
