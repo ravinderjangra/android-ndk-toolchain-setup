@@ -12,11 +12,7 @@ export class Ndk {
   private constructor(path: string) {
     this.path = path
 
-    if (this.osPlatform === 'linux') {
-      Ndk.defaultNdkPath = '/usr/local/lib/android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
-    } else if (this.osPlatform === 'darwin') {
-      Ndk.defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
-    }
+    Ndk.defaultNdkPath = '/Users/runner/Library/Android/sdk/ndk-bundle/build/tools/make_standalone_toolchain.py'
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
